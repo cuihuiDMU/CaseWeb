@@ -108,6 +108,7 @@ function createTime(){
 </body>
 <script language="javascript" src="js/script.js" ></script>
 <script>
+$(document).ready(function(){
 $(".caseNameSearch").on("keyup focus", function() {
     var txt = document.getElementById("caseNameSearch").value;
     var sobj=document.getElementById("poptable");
@@ -179,11 +180,11 @@ $(".countrySelect").change(function(){
    // $("#citySelect").html(citySelect);
  });
 $("#formSearch").submit(function() {
-	 // alert($(this).serialize());
+	 alert($(this).serialize());
 	 var caseSearchShow = document.getElementById("caseSearchShow");
 	  $(this).ajaxSubmit({
-         type: 'post', // 提交方式 get/post
-         url: '<%=request.getContextPath()%>/search', // 需要提交的 url
+         type: "post", // 提交方式 get/post
+         url: "<%=request.getContextPath()%>/search", // 需要提交的 url
          data:$(this).serialize(),
          dataType: "json",
          success: function(data) 
@@ -200,5 +201,6 @@ $("#formSearch").submit(function() {
          });
 	  return false;
 	});
+});
 </script>
 </html>

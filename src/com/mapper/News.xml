@@ -77,8 +77,8 @@
             	</if>
             	<if test="country =='Other'">
 	          		and news_country != 'China'
-	          		<if test="#{city} != null and #{city} != ''">
-	          		and news_country = #{city}
+	          		<if test="city != null and city != ''">
+	          		and news_country like #{city}
 	          		</if>
             	</if>
     		</where>
