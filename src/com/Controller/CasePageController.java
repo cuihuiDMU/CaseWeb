@@ -41,7 +41,6 @@ public class CasePageController extends HttpServlet {
 		int count = Integer.valueOf(pageSize);
 		String country=newscountry.substring(4);
 		
-		System.out.println(currentpage+country);
 		List<News> listNews = newsService.showCase(country,currentPage,count);
 		JSONObject data = new JSONObject();
 		JSONArray dataList = new JSONArray();

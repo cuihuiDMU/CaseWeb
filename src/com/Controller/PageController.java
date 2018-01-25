@@ -35,7 +35,6 @@ public class PageController extends HttpServlet{
 		
 		String news_id=request.getParameter("news_id");
 		int id = Integer.parseInt(news_id);
-		System.out.println(id);
 		
 		News news = newsService.pageShow(id);
 		
