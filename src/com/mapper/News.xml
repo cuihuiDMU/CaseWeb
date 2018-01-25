@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.mapper.LoadMapper">
+	    <insert id="add" parameterType="News" >
+	        insert into news_info ( name ) values (#{name})    
+	    </insert>
+	    
+	    <delete id="delete" parameterType="News" >
+	        delete from news_info where news_id= #{id}   
+	    </delete>
+	    
+	    <select id="get" parameterType="_int" resultType="News">
+	        select * from   news_info  where news_id= #{id}    
+	    </select>
+
+	    <update id="update" parameterType="News" >
+	        update news_info set news_title=#{name} where news_id=#{id}    
+	    </update>
+	    <select id="newsALLlist" resultType="News">
+	        select * from news_info order by news_date DESC limit 10  
+	    </select>	
+	    <select id="newsChinalist" resultType="News">
+	        select * from news_info where news_country = "China" order by news_date DESC limit 10 
+	    </select>
+	    <select id="newsOtherlist" resultType="News">
+	        select * from news_info where news_country != "China" order by news_date DESC limit 10   
+	    </select>
+	     <select id="caseALLlist" resultType="News">
+	        select * from news_info order by rand() limit 10  
+	    </select>	
+	    <select id="caseChinalist" resultType="News">
+	        select * from news_info where news_country = "China" order by rand() limit 10 
+	    </select>
+	    <select id="caseOtherlist" resultType="News">
+	        select * from news_info where news_country != "China" order by rand() limit 10   
+	    </select> 
+	    
+	    <select id="showALLNews" parameterType="java.lang.Integer" resultType="News">
+			select * from news_info order by news_date DESC limit #{0},#{1}
+		</select>	
+	    <select id="showChinaNews" parameterType="java.lang.Integer" resultType="News">
+	        select * from news_info where news_country = "China" order by news_date DESC limit #{0},#{1} 
+	    </select>
+	    <select id="showOtherNews" parameterType="java.lang.Integer" resultType="News">
+	        select * from news_info where news_country != "China" order by news_date DESC limit #{0},#{1} 
+	    </select> 
+	     
+	    <select id="showALLCase" parameterType="java.lang.Integer" resultType="News">
+	    	select * from news_info order by rand() limit #{0},#{1}
+	    </select>	
+	    <select id="showChinaCase" parameterType="java.lang.Integer" resultType="News">
+	        select * from news_info where news_country = "China" order by rand() limit #{0},#{1} 
+	    </select>
+	    <select id="showOtherCase" parameterType="java.lang.Integer" resultType="News">
+	        select * from news_info where news_country != "China" order by rand() limit #{0},#{1}   
+	    </select>
+	    <select id="pageShow" parameterType="java.lang.Integer" resultType="News">
+	        select * from news_info where news_id = #{0}   
+	    </select>
+		<select id="namePop" parameterType="java.lang.String" resultType="String">
+			select news_title from news_info where news_title like #{0}
+		</select>
+		<select id="countryPop" parameterType="java.lang.String" resultType="String">
+			select distinct news_country from news_info where news_country != "China"
+		</select>
+		<select id="searchResult" parameterType="java.lang.String" resultType="News">
+			select * from news_info where news_date between #{from} and #{to}
+			<where>  
+            	<if test="country=='China'">
+            	  and news_country = 'China'
+            	<if test="city != null and city != ''">
+            		 and news_site like #{city}
+            	</if>
+            	</if>
+            	<if test="country =='Other'">
+	          		and news_country != 'China'
+	          		<if test="#{city} != null and #{city} != ''">
+	          		and news_country = #{city}
+	          		</if>
+            	</if>
+    		</where>
+		</select>	     
+	</mapper>
