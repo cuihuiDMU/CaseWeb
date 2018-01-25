@@ -2,6 +2,7 @@ package com.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.pojo.News;
@@ -46,7 +47,7 @@ public interface LoadMapper {
     
     public List<String> countryPop();
     
-    public List<News> searchResult(String country, String city,	String from, String to, String caseName);
+    public List<News> searchResult(@Param("country")String country, @Param("city")String city, @Param("from")String from,@Param("to")String to,@Param("caseName")String caseName);
     public int count();
     
 }

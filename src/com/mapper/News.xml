@@ -67,8 +67,9 @@
 			select distinct news_country from news_info where news_country != "China"
 		</select>
 		<select id="searchResult" parameterType="java.lang.String" resultType="News">
-			select * from news_info where news_date between #{from} and #{to}
-			<where>  
+			select * from news_info
+			<where>
+				news_date between #{from} and #{to}
             	<if test="country=='China'">
             	  and news_country = 'China'
             	<if test="city != null and city != ''">
