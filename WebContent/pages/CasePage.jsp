@@ -123,7 +123,8 @@ function buildTable(pageNumber,pageSize,country) {
         	   var id = dataList[i].id;
         	   //alert(id);
         	   var title = dataList[i].title;
-        	   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"' style='font-size:14px;'>"+title+"</a></td></tr>";
+        	   var date = dataList[i].date;
+        	   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"' style='font-size:14px;'>"+title+"</a></td><td>"+date+"</td></tr>";
            }  
   	  $("#casepagelist").html(str);  
      }else {  // dataList.length > 0 不成立          	            	

@@ -1,4 +1,4 @@
-	package com.Controller;
+package com.Controller;
 
 import java.io.PrintWriter;
 import java.util.Iterator;
@@ -47,6 +47,7 @@ public class LoadController {
 		JSONObject jsonobj = new JSONObject();
 		jsonobj.put("id",nn.getNews_id());
 		jsonobj.put("title",nn.getNews_title());
+		jsonobj.put("date",nn.getNews_date());
 		jsonleft.add(jsonobj);
 		}
 		for(Iterator<News> i = listCase.iterator();i.hasNext();)
@@ -55,6 +56,7 @@ public class LoadController {
 		JSONObject jsonobj = new JSONObject();
 		jsonobj.put("id",nn.getNews_id());
 		jsonobj.put("title",nn.getNews_title());
+		jsonobj.put("date",nn.getNews_date());
 		jsonright.add(jsonobj);
 		}
 		

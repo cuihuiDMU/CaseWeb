@@ -101,13 +101,15 @@ $.get("<%=request.getContextPath()%>/loadServlet",function back(json){
      	{
      	 var id = jsonleft[a].id;
        	 var title = jsonleft[a].title;
-       	  strleft += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td></tr>";
+       	 var date = jsonleft[a].date;
+       	  strleft += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td><td>"+date+"</td></tr>";
      	 }
   	  for(var b=0; b < jsonright.length; b++)
  	    {
- 	     var id = jsonleft[b].id;
-   	     var title = jsonleft[b].title;
-   	  		strright += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td></tr>";
+ 	     var id = jsonright[b].id;
+   	     var title = jsonright[b].title;
+   	  	 var date = jsonright[b].date;
+   	  		strright += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td><td>"+date+"</td></tr>";
  	     }
 	 $("#newsTable").html(strleft);
 	 $("#caseTable").html(strright);
@@ -127,7 +129,8 @@ $(".newslist").mouseover(function(){
               for(var i=0; i < json.length; i++) {  
            	   var id = json[i].id;
            	   var title = json[i].title;
-           	   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td></tr>";
+           	   var date = json[i].date;
+           	   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td><td>"+date+"</td></tr>";
               }  
               newsTable.innerHTML=str;  
         }
@@ -145,7 +148,8 @@ $(".newslist").mouseover(function(){
                for(var i=0; i < json.length; i++) {  
             	   var id = json[i].id;
             	   var title = json[i].title;
-            	   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td></tr>";
+               	   var date = json[i].date;
+				   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td><td>"+date+"</td></tr>";
                }  
                caseTable.innerHTML=str;  
          }

@@ -43,6 +43,7 @@ public class NewsController {
 		JSONObject jsonobj = new JSONObject();
 		jsonobj.put("id",nn.getNews_id());
 		jsonobj.put("title",nn.getNews_title());
+		jsonobj.put("date",nn.getNews_date());
 		jsonarray.add(jsonobj);
 		}
 		

@@ -24,7 +24,7 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
  <div class="inner">
   <div class="logo"><img src="images/image_02.jpg" width="571" /></div> 
   <div class="search">
-      <span><a href="#" class="white">登录后台</a></span>|<a href="#" class="white">联系我们</a></td>
+      <span><a href="#" class="white">登录后台</a></span>|<a href="#" class="white">联系我们</a>
   </div> 
 </div>
 </div>
@@ -123,7 +123,8 @@ function buildTable(pageNumber,pageSize,country) {
         	   var id = dataList[i].id;
         	   //alert(id);
         	   var title = dataList[i].title;
-        	   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"' style='font-size:14px;'>"+title+"</a></td></tr>";
+        	   var date = dataList[i].date;
+        	   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"' style='font-size:14px;'>"+title+"</a></td><td>"+date+"</td></tr>";
            }  
   	  $("#newspagelist").html(str);  
      }else {  // dataList.length > 0 不成立          	            	

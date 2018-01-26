@@ -97,7 +97,7 @@ body{word-wrap:break-word;text-align:left;font:13px "Microsoft YaHei" ;color:#33
 .listcol .name{ height:38px; line-height:38px; text-align:center;font-size:25px;font-weight:bold; color:#000000; margin-top:20px;border-bottom:10px solid #ffffff;}
 .listbox {  height:100%; width:100%; min-height:250px; _height:1000px;}
 .entry{ padding:5px; }
-.nplist{margin-left:50px;margin-top:30px;}
+.nplist{margin-left:50px;margin-right:100px;margin-top:30px; width:700px;}
 
 .container{margin-left:100px; text-align:center;}
 #pageTab{font-family:"Microsoft YaHei"; font-size:15px;}
