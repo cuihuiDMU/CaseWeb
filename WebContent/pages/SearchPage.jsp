@@ -180,7 +180,6 @@ $(".countrySelect").change(function(){
    // $("#citySelect").html(citySelect);
  });
 $("#formSearch").submit(function() {
-	 alert($(this).serialize());
 	 var caseSearchShow = document.getElementById("caseSearchShow");
 	  $(this).ajaxSubmit({
          type: "post", // 提交方式 get/post

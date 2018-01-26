@@ -73,7 +73,6 @@ public class SearchController {
 	public void listResult(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		System.out.println("into controller");
 		String country_S=request.getParameter("country");
         String city_S=request.getParameter("city");
         String caseTimefrom_S=request.getParameter("caseTimefrom");
@@ -99,7 +98,6 @@ public class SearchController {
       	  JSONArray caseSearchArray = new JSONArray();
 			  for(Iterator<News> i = searchResult.iterator();i.hasNext();)
 				{	News nn = i.next();
-					System.out.println("this is searchcontroller:" +nn.getNews_id());
 					JSONObject jsonobj = new JSONObject();
 					jsonobj.put("id",nn.getNews_id());
 					jsonobj.put("title", nn.getNews_title());

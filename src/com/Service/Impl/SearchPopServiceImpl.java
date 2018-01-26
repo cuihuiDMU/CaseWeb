@@ -28,7 +28,6 @@ public class SearchPopServiceImpl implements NewsService {
 	}
 	public List<News> searchResult(String country, String city,
 			String caseTimefrom, String caseTimeto, String caseName) {
-		System.out.println("this is searchpopserviceimpl:"+country+"-"+ city+"-"+ caseTimefrom+"-"+caseName);
 		String from = "1900-1-1";
 		String to = "2100-1-1";
 		if((caseTimefrom != null)&&(caseTimefrom != ""))

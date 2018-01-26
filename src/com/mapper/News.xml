@@ -82,6 +82,10 @@
 	          		and news_country like #{city}
 	          		</if>
             	</if>
+            	<if test="caseName != null and caseName != ''">
+            	<!-- <bind name="pattern" value="'%' + caseName + '%'" /> -->
+            		 and news_title like concat(concat('%',#{caseName}),'%')
+            	</if>
     		</where>
 		</select>	     
 	</mapper>
