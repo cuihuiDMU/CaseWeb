@@ -53,7 +53,7 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
      <div class="name" id="statistictitle">事故统计分析</div>   
      
      <div class="listbox">
-      <div class="entry" id="ent">
+      <div class="entry" id="figureshow">
 		<div id="ratiofig" class="fig" style="width:80%; height:350px; float:left; margin-left:5%; border-bottom:30px solid #ffffff;"></div>
       </div>
    </div>     
@@ -85,8 +85,8 @@ $(".listtt,.list").click(function(){
             case "年典型事故起数分布": id="yearfig"; break;
             }
         	var str = "<div id="+id+" class='fig' style='width:80%; height:350px; float:left; margin-left:5%; border-bottom:30px solid #ffffff;'></div>";
-        	var ent = document.getElementById("ent");
-        	ent.innerHTML=str;
+        	var figureshow = document.getElementById("figureshow");
+        	figureshow.innerHTML=str;
         	switch(id)
             {
             case "ratiofig": 

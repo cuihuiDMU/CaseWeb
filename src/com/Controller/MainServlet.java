@@ -13,10 +13,10 @@ import com.pojo.News;
 public class MainServlet {
 	@RequestMapping("")
 	public ModelAndView listNews(){
-		ModelAndView mav = new ModelAndView("main");
+		ModelAndView mav = new ModelAndView("NewsPage");
 		
 		// 放入转发参数
-		// mav.addObject("news", news);
+		mav.addObject("北京市", 12);
 		return mav;
 	}
 

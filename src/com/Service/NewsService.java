@@ -11,6 +11,6 @@ public interface NewsService {
 	List<News> showCase(String country,int currentPage,  int count);
 	List<String> namePop(String name);
 	List<String> countryPop();
-	List<News> searchResult(String country,String city,String caseTimefrom,String caseTimeto,String caseName);
+	List<News> searchResult(String country,String city,String caseTimefrom,String caseTimeto,String caseName, int currentPage,  int count);
  	News pageShow(int id);
 }

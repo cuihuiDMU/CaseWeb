@@ -16,6 +16,9 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
 <script language="javascript" src="js/jquery.min.js" ></script>
 <script language="javascript" src="js/jquery.form.js"></script>
 <script language="javascript" src="My97DatePicker/WdatePicker.js" ></script>
+<script language="javascript" src="js/bootstrap.min.js"></script>
+<script language="javascript" src="js/bootstrap.bundle.min.js"></script>
+<script language="javascript" src="js/bootstrap-paginator.min.js"></script>
 <script language="javascript"> 
 function createTime(){ 
 	WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'2010-10-01',maxDate:'2012-10-01'}); }
@@ -88,7 +91,11 @@ function createTime(){
              </table> 
           </form>  
           <table id="caseSearchShow" class="caseSearchShow">
-   		  </table>           
+   		  </table> 
+   		  
+   		  <div class="container">
+      		<ul id="pageTab" style="margin: auto 10px"></ul>
+	  		</div>          
        </div>
        
        
@@ -109,11 +116,9 @@ function createTime(){
 <script language="javascript" src="js/script.js" ></script>
 <script>
 $(document).ready(function(){
-$(".caseNameSearch").on("keyup focus", function() {
+ $(".caseNameSearch").on("keyup focus", function() {
     var txt = document.getElementById("caseNameSearch").value;
     var sobj=document.getElementById("poptable");
-    //alert(txt);
-    //var casecountry=$(this).attr("id");
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -126,13 +131,12 @@ $(".caseNameSearch").on("keyup focus", function() {
                     suggest+="<tr><td onmouseover='mouseoverchange(this)' onmouseout='mouseoutchange(this)'>"+title+"</tr></td>";  
                 }  
                 sobj.innerHTML=suggest;  
-        }
-    });
- });
+        		}
+    		});
+ 		});// on事件结束
 $(".caseNameSearch").blur(function() {
     document.getElementById("poptable").innerHTML="";
-    
- });
+	 });
 function mouseoverchange(x)
 {
 	 x.style.backgroundColor="background-color";
@@ -157,7 +161,6 @@ $(".countrySelect").change(function(){
   	  {
   		  citySelect+='<option value="'+city[i]+'">'+city[i]+'</option>';
   	  }
-  	  
   	  document.getElementById("citySelect").innerHTML=citySelect;
     }
       else if(country=="Other")
@@ -172,34 +175,118 @@ $(".countrySelect").change(function(){
 	                	  var country = jsonCountry[i].country;
 	                	  citySelect+="<option value='"+country+"'>"+country+"</option>"; 
 	                     }
-	                  //alert(citySelect);
 	                document.getElementById("citySelect").innerHTML=citySelect;
 	                }//success结束
 	      });//ajax结束
      }//else if 结束
-   // $("#citySelect").html(citySelect);
- });
+	}); //change事件结束
+ var formdata="";
+ var PAGESIZE = 10;
+ 
 $("#formSearch").submit(function() {
 	 var caseSearchShow = document.getElementById("caseSearchShow");
+	 formdata = $(this).serialize();
+	 var reqParams = {'pageNumber':1,'pageSize':PAGESIZE,"formdata":formdata};
 	  $(this).ajaxSubmit({
-         type: "post", // 提交方式 get/post
-         url: "<%=request.getContextPath()%>/search", // 需要提交的 url
-         data:$(this).serialize(),
+         type: "post", 
+         url: "<%=request.getContextPath()%>/search",
+         data:reqParams,
          dataType: "json",
          success: function(data) 
          {var str = "";
-         for(var i=0; i < data.length; i++) {  
-      	   var id = data[i].id;
-      	   var title = data[i].title;
+         var dataList = data.dataList;
+         for(var i=0; i < dataList.length; i++) {  
+      	   var id = dataList[i].id;
+      	   var title = dataList[i].title;
       	   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td></tr>";
-      	  
-         $(this).resetForm();
-         } // 提交后重置表单
-         caseSearchShow.innerHTML=str;
-         }
-         });
+         	$(this).resetForm();
+           } // 提交后重置表单
+          caseSearchShow.innerHTML=str;
+          var options = {  
+        		  currentPage: data.pageNo,  //当前页数
+        		  numberOfPages:data.pages,//是分页按钮可见的最多数
+        		  totalPages: 20,  //总页数，这里只是暂时的，后头会根据查出来的条件进行更改
+        		  size:"normal",  
+        		  alignment:"center",  
+        		  itemTexts: function (type, page, current) {  
+        		      switch (type) {  
+        		          case "first":  
+        		              return "第一页";  
+        		          case "prev":  
+        		              return "上一页";  
+        		          case "next":  
+        		              return "下一页";  
+        		          case "last":  
+        		              return "最后页";  
+        		          case "page":  
+        		              return  page;  
+        		      }                 
+        		  },  
+        		  onPageClicked: function (e, originalEvent, type, page) { 
+        			  alert("options end");
+        		  buildTable(1,PAGESIZE,formdata); //默认每页最多10条
+        		  }  
+        		}  //options结束
+          $("#pageTab").bootstrapPaginator(options); 
+         	}//success结束
+         }); //ajaxsubmit结束
 	  return false;
-	});
-});
+	});  //submit结束
+}); //document.ready结束
+
+//生成表格
+function buildTable(pageNumber,pageSize,formdata) {
+   var reqParams = {'pageNumber':pageNumber,'pageSize':pageSize,"formdata":formdata};//请求数据
+   $(function () {   
+   	  $.ajax({
+   	        type:"POST",
+   	        url:"<%=request.getContextPath()%>/search",
+   	        data:reqParams,
+   	        dataType:"json",
+   	        success: function(data){
+   	        var dataList = data.dataList;
+    		if (dataList.length > 0 ) {
+  	 		 var str;
+  			 for(var i=0; i < dataList.length; i++) {  
+   	   			var id = dataList[i].id;
+   	   			var title = dataList[i].title;
+   	   			str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td></tr>";
+        		} // 提交后重置表单
+  	  		$("#caseSearchShow").html(str);  
+     		}else {  // dataList.length > 0 不成立          	            	
+	          $("#caseSearchShow").html('<tr><td><center>查询无数据</center></td></tr>');
+	      	}
+   	        var newoptions = {  
+              currentPage: data.pageNo==1?1:data.pageNo,  //当前页数	
+              totalPages: data.pages==0?1:data.pages,  //总页数
+              size:"normal",  
+              alignment:"center",  
+              itemTexts: function (type, page, current) {  
+              switch (type) {  
+                  case "first":  
+                  return "第一页";  
+                  case "prev":  
+                  return "上一页";  
+                  case "next":  
+                  return "下一页";  
+                  case "last":  
+                  return "最后页";  
+                  case "page":  
+                  return  page;  
+                 	}                 
+               		 }, //itemTexts结束 
+               onPageClicked: function (e, originalEvent, type, page) { 
+            	  
+  	          buildTable(currentPage,PAGESIZE,formdata); //默认每页最多10条
+                 }  
+           }  //newoptions结束            	           
+         $('#pageTab').bootstrapPaginator("setOptions",newoptions); //重新设置总页面数目
+   	      },   // success结束
+   	        error: function(e){
+   	           alert("查询失败:" + e);
+   	        }
+   	    });// ajax结束
+     }); //  $(function)结束
+} //buildtable结束
 </script>
 </html>

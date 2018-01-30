@@ -21,7 +21,7 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
 <!--header:Start-->
 <div class="wrapper" id="header">
  <div class="inner">
-  <div class="logo"><img src="images/image_02.jpg" width="571" /></div> 
+  <div class="logo"></div> 
   <div class="search">
       <span><a href="#" class="white">登录后台</a></span>|<a href="#" class="white">联系我们</a>
   </div> 
@@ -47,7 +47,6 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
  <div class="solid-hover"><img src="images/hover.png"></div>
  <div class="solid-hover2"><div class="tit"><span>[标题2]</span></div></div>
  </div><!--//lay1:End-->
- <div class="clear"></div>
  <div class="lay3">
     <div class="lf">
      <div class="pd11">

@@ -79,6 +79,10 @@ public class SearchController {
         String caseTimeto_S=request.getParameter("caseTimeto");
         String caseName_S=request.getParameter("caseName");
         
+        String currentpage = request.getParameter("pageNumber");
+		String pageSize = request.getParameter("pageSize");
+		int currentPage = Integer.valueOf(currentpage);
+		int count = Integer.valueOf(pageSize);
        
         if(country_S!=null || city_S !=null || caseTimefrom_S !=null || caseTimeto_S !=null || caseName_S !=null)
         {
@@ -94,7 +98,8 @@ public class SearchController {
       	  if(caseName_S!=null)
           	{ caseName=URLDecoder.decode(caseName_S, "UTF-8");}
           
-      	  List<News> searchResult= searchPopService.searchResult(country,city,caseTimefrom,caseTimeto,caseName); 
+      	  List<News> searchResult= searchPopService.searchResult(country,city,caseTimefrom,caseTimeto,caseName,currentPage,count); 
+      	  JSONObject data = new JSONObject();
       	  JSONArray caseSearchArray = new JSONArray();
 			  for(Iterator<News> i = searchResult.iterator();i.hasNext();)
 				{	News nn = i.next();
@@ -103,9 +108,14 @@ public class SearchController {
 					jsonobj.put("title", nn.getNews_title());
 					caseSearchArray.add(jsonobj);
 				}
+			  
+			  	data.put("pageNo", String.valueOf(currentPage));
+				data.put("pages", pageSize);
+				data.put("dataList", caseSearchArray);
+				
 			    response.setContentType("application/x-json");
 				PrintWriter out = response.getWriter();
-				out.write(caseSearchArray.toString());
+				out.write(data.toString());
         
         }
 		

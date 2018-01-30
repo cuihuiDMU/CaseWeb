@@ -67,7 +67,7 @@
 			select distinct news_country from news_info where news_country != "China"
 		</select>
 		<select id="searchResult" parameterType="java.lang.String" resultType="News">
-			select * from news_info
+			select * from news_info 
 			<where>
 				news_date between #{from} and #{to}
             	<if test="country=='China'">
@@ -87,5 +87,6 @@
             		 and news_title like concat(concat('%',#{caseName}),'%')
             	</if>
     		</where>
+    		order by news_date DESC limit #{offset},#{limit}
 		</select>	     
 	</mapper>

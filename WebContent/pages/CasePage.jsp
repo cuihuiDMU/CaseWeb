@@ -22,7 +22,7 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
 <!--header:Start-->
 <div class="wrapper" id="header">
  <div class="inner">
-  <div class="logo"><img src="images/image_02.jpg" width="571" /></div> 
+  <div class="logo"></div> 
   <div class="search">
       <span><a href="#" class="white">登录后台</a></span>|<a href="#" class="white">联系我们</a></td>
   </div> 
@@ -75,7 +75,7 @@ $(function(){
   $("#pageTab").bootstrapPaginator(options);     
 	buildTable(1,PAGESIZE,"caseALL");//默认空白查全部
  });
-var PAGESIZE = 8;
+var PAGESIZE = 10;
 var options = {  
   currentPage: 1,  //当前页数
   numberOfPages:10,//是分页按钮可见的最多数

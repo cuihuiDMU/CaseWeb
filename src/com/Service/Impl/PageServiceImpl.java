@@ -42,7 +42,7 @@ public class PageServiceImpl implements NewsService {
 
 	@Override
 	public List<News> searchResult(String country, String city,
-			String caseTimefrom, String caseTimeto, String caseName) {
+			String caseTimefrom, String caseTimeto, String caseName, int currentPage,  int count) {
 		// TODO Auto-generated method stub
 		return null;
 	}

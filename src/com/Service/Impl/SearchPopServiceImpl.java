@@ -27,9 +27,11 @@ public class SearchPopServiceImpl implements NewsService {
 		return loadMapper.countryPop();
 	}
 	public List<News> searchResult(String country, String city,
-			String caseTimefrom, String caseTimeto, String caseName) {
+			String caseTimefrom, String caseTimeto, String caseName, int currentPage,  int count) {
 		String from = "1900-1-1";
 		String to = "2100-1-1";
+		int offset = (currentPage-1)*count;
+		int limit = count;
 		if((caseTimefrom != null)&&(caseTimefrom != ""))
 		  {
 			  from = caseTimefrom;
@@ -38,7 +40,7 @@ public class SearchPopServiceImpl implements NewsService {
 		  {
 			  to = caseTimeto;
 		  }
-		return loadMapper.searchResult(country,city,from,to,caseName);
+		return loadMapper.searchResult(country,city,from,to,caseName,offset,limit);
 	}
 	public List<News> newslist(String newscountry) {
 		return null;

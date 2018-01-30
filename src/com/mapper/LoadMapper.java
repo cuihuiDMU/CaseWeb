@@ -47,7 +47,7 @@ public interface LoadMapper {
     
     public List<String> countryPop();
     
-    public List<News> searchResult(@Param("country")String country, @Param("city")String city, @Param("from")String from,@Param("to")String to,@Param("caseName")String caseName);
+    public List<News> searchResult(@Param("country")String country, @Param("city")String city, @Param("from")String from,@Param("to")String to,@Param("caseName")String caseName,@Param("offset")int offset,@Param("limit")int limit);
     public int count();
     
 }
