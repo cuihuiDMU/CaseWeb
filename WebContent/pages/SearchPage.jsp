@@ -180,31 +180,37 @@ $(".countrySelect").change(function(){
 	      });//ajax结束
      }//else if 结束
 	}); //change事件结束
- var formdata="";
  var PAGESIZE = 10;
  
 $("#formSearch").submit(function() {
 	 var caseSearchShow = document.getElementById("caseSearchShow");
 	 formdata = $(this).serialize();
-	 var reqParams = {'pageNumber':1,'pageSize':PAGESIZE,"formdata":formdata};
+	 country = $("#countrySelect").val();
+	 city = $("#citySelect").val();
+	 caseTimefrom = $("#caseTimefrom").val();
+	 caseTimeto = $("#caseTimeto").val();
+	 caseName = $("#caseNameSearch").val();
+	 reqParams = {'pageNumber':1,'pageSize':PAGESIZE,"formdata":formdata};
 	  $(this).ajaxSubmit({
          type: "post", 
          url: "<%=request.getContextPath()%>/search",
          data:reqParams,
          dataType: "json",
          success: function(data) 
-         {var str = "";
-         var dataList = data.dataList;
-         for(var i=0; i < dataList.length; i++) {  
+         {$(this).resetForm();
+          var str = "";
+          var dataList = data.dataList;
+          pageNo = data.pageNo;
+          pages = data.pages;
+          for(var i=0; i < dataList.length; i++) {  
       	   var id = dataList[i].id;
       	   var title = dataList[i].title;
       	   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td></tr>";
-         	$(this).resetForm();
            } // 提交后重置表单
           caseSearchShow.innerHTML=str;
           var options = {  
-        		  currentPage: data.pageNo,  //当前页数
-        		  numberOfPages:data.pages,//是分页按钮可见的最多数
+        		  currentPage: pageNo,  //当前页数
+        		  numberOfPages:pages,//是分页按钮可见的最多数
         		  totalPages: 20,  //总页数，这里只是暂时的，后头会根据查出来的条件进行更改
         		  size:"normal",  
         		  alignment:"center",  
@@ -223,8 +229,7 @@ $("#formSearch").submit(function() {
         		      }                 
         		  },  
         		  onPageClicked: function (e, originalEvent, type, page) { 
-        			  alert("options end");
-        		  buildTable(1,PAGESIZE,formdata); //默认每页最多10条
+        		  buildTable(pageNo++,PAGESIZE,formdata); //默认每页最多10条
         		  }  
         		}  //options结束
           $("#pageTab").bootstrapPaginator(options); 
@@ -236,12 +241,13 @@ $("#formSearch").submit(function() {
 
 //生成表格
 function buildTable(pageNumber,pageSize,formdata) {
-   var reqParams = {'pageNumber':pageNumber,'pageSize':pageSize,"formdata":formdata};//请求数据
-   $(function () {   
+	alert(pageNumber);
+   Params = {'pageNumber':pageNumber,'pageSize':pageSize,"country":country};//请求数据
+	$(function () {   
    	  $.ajax({
    	        type:"POST",
    	        url:"<%=request.getContextPath()%>/search",
-   	        data:reqParams,
+   	        data:Params,
    	        dataType:"json",
    	        success: function(data){
    	        var dataList = data.dataList;
@@ -276,11 +282,10 @@ function buildTable(pageNumber,pageSize,formdata) {
                  	}                 
                		 }, //itemTexts结束 
                onPageClicked: function (e, originalEvent, type, page) { 
-            	  
-  	          buildTable(currentPage,PAGESIZE,formdata); //默认每页最多10条
+	  	          buildTable(currentPage++,PAGESIZE,formdata); //默认每页最多10条
                  }  
            }  //newoptions结束            	           
-         $('#pageTab').bootstrapPaginator("setOptions",newoptions); //重新设置总页面数目
+         $("#pageTab").bootstrapPaginator("setOptions",newoptions); //重新设置总页面数目
    	      },   // success结束
    	        error: function(e){
    	           alert("查询失败:" + e);

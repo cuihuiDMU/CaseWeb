@@ -83,7 +83,8 @@ public class SearchController {
 		String pageSize = request.getParameter("pageSize");
 		int currentPage = Integer.valueOf(currentpage);
 		int count = Integer.valueOf(pageSize);
-       
+		
+		System.out.println(country_S+currentpage+pageSize);
         if(country_S!=null || city_S !=null || caseTimefrom_S !=null || caseTimeto_S !=null || caseName_S !=null)
         {
       	  String country="",city="",caseTimefrom="",caseTimeto="",caseName ="";

@@ -68,7 +68,7 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr><td class="list">二次事故</td></tr>
           <tr><td class="list">ISM分析</td></tr>
-          <tr><td class="list" id="faulttreeAnalysis">事故树分析</td></tr>
+          <tr><td class="list" id="faulttreeAnalysis">故障树分析</td></tr>
           <tr><td class="list" id="bayesianAnalysis">贝叶斯分析</td></tr>
           </table>
      </div>
@@ -112,15 +112,15 @@ $("#analysislist").click(function(){
  });
 $("#faulttreeAnalysis").click(function(){
 	   var pagetable="";
-	   pagetable+="<tr><td class='pagetableleft' >事故树分析</td><td><%=faulttree %></td></tr>";
-	   pagetable+="<tr><td class='pagetableleft' >事故树模型</td><td><img src='<%=faulttree_figure %>'></td></tr>"; 
+	   pagetable+="<tr><td class='pagetableleft' >故障树分析</td><td><%=faulttree %></td></tr>";
+	   pagetable+="<tr><td class='pagetableleft' >故障树模型</td><td><img src='<%=faulttree_figure %>'></td></tr>"; 
 	    document.getElementById("pagetable").innerHTML=pagetable;
 	 });
 
 $("#bayesianAnalysis").click(function(){
 	   var pagetable="";
 	   pagetable+="<tr><td class='pagetableleft' >贝叶斯分析</td><td><%=faulttree %></td></tr>";
-	   pagetable+="<tr><td class='pagetableleft' >事故树模型</td><td><img src='<%=faulttree_figure %>'></td></tr>"; 
+	   pagetable+="<tr><td class='pagetableleft' >故障树模型</td><td><img src='<%=faulttree_figure %>'></td></tr>"; 
 	    document.getElementById("pagetable").innerHTML=pagetable;
 	 });
 $("#newsALL").click(function(){
