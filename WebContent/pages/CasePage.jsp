@@ -53,7 +53,7 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
       </div>
    </div>  
       <div class="container">
-      <ul id="pageTab" style="margin: auto 10px"></ul>
+      <ul id="pageTab" style="width:70%;margin:50px;"></ul>
 	  </div>
         
    </div><!--end listcol-->

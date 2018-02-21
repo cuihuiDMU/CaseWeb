@@ -37,15 +37,15 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
  <div class="lay1"> 
  <div id="banner_slide">
     <ul id="banner_slide_inner" >
-    <li style="background-image:url(images/b1.jpg)"><a href="#"></a></li>
-    <li style="background-image:url(images/b2.jpg)"><a href="#"></a></li>
-    <li style="background-image:url(images/b3.jpg)"><a href="#"></a></li>
-    <li style="background-image:url(images/b4.jpg)"><a href="#"></a></li>
-    <li style="background-image:url(images/b5.jpg)"><a href="#"></a></li>   
+    <li style="background-image:url(images/f.jpg)"><a href="#"></a></li>
+    <li style="background-image:url(images/ff.jpg)"><a href="#"></a></li>
+    <li style="background-image:url(images/fff.jpg)"><a href="#"></a></li>
+    <li style="background-image:url(images/ffff.jpg)"><a href="#"></a></li>
+    <li style="background-image:url(images/6.jpg)"><a href="#"></a></li>   
     </ul>
  </div> 
  <div class="solid-hover"><img src="images/hover.png"></div>
- <div class="solid-hover2"><div class="tit"><span>[标题2]</span></div></div>
+ <div class="solid-hover2"><div class="tit"><span>2017山东临沂金誉石化有限公司爆炸着火事故</span></div></div>
  </div><!--//lay1:End-->
  <div class="lay3">
     <div class="lf">

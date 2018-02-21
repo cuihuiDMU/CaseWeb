@@ -1,6 +1,6 @@
 ﻿
 $(document).ready(function(){
-	var navstr = "<ul><li><a href='pages/main.jsp' target='_blank'>首页</a></li><li><a href='pages/NewsPage.jsp' target='_blank'>新闻动态</a></li><li><a href='pages/CasePage.jsp' target='_blank'>经典案例</a></li><li><a href='pages/SearchPage.jsp'  target='_blank'>案例搜索</a></li><li><a href='pages/StatisticPage.jsp'  target='_blank'>统计数据</a></li></ul></div>"	
+	var navstr = "<ul><li><a href='main.jsp' target='_blank'>首页</a></li><li><a href='pages/NewsPage.jsp' target='_blank'>新闻动态</a></li><li><a href='pages/CasePage.jsp' target='_blank'>经典案例</a></li><li><a href='pages/SearchPage.jsp'  target='_blank'>案例搜索</a></li><li><a href='pages/StatisticPage.jsp'  target='_blank'>统计数据</a></li></ul></div>"	
 		$(".nav").html(navstr);
 
 

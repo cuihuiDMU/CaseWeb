@@ -7,7 +7,7 @@ a:hover{color:#666;text-decoration:underline;}
 img{ border:none; }
 p{ line-height:200%;}
 body{word-wrap:break-word;text-align:left;font:13px "Microsoft YaHei" ;color:#333333; background:url(back.jpg) no-repeat center top; }
-.mainpage{margin:0 auto; overflow:hidden;}
+.mainpage{margin:0 auto; height:auto;}
 .left{float:left}
 .right{float:right}
 .clear{display:block;clear:both;font-size:0px;height:0px;line-height:0px;width:0px;margin:0px;padding:0px;overflow:hidden;}
@@ -32,7 +32,7 @@ body{word-wrap:break-word;text-align:left;font:13px "Microsoft YaHei" ;color:#33
 
  /**** contenter **/
 #contenter{clear: both;height:100%;width:100%;padding-top:0px;  }
-#contenter .inner{ width:1180px; margin: 0 auto;}
+#contenter .inner{ width:1180px; margin: 0 auto; min-height:880px;}
 .mlink{height:36px;line-height:36px; overflow:hidden; text-align:center; border-right:1px solid #ccc; }
 .mlink a { display:inline-block; height:36px; line-height:36px; font-size: 14px; color: #000;font-family: "Microsoft YaHei"; text-align:center;width:100%;}
 .mlink a:hover { text-decoration:none;color:#fff; background:#3d8716;}
@@ -106,4 +106,4 @@ body{word-wrap:break-word;text-align:left;font:13px "Microsoft YaHei" ;color:#33
 h1.artitle { width:900px; margin:0 auto; line-height:50px; font-size:16px;font-family:"Microsoft YaHei"; font-weight:bold; color:#000; text-align:center; margin-top:10px;margin-bottom:10px;}
 .infobox { width:900px; height:auto; min-height:500px; _height:400px; margin:0 auto;text-align:left; }
 .pagetable{width:100%; border:0; cellspacing:0; cellpadding:0; font-family:'Microsoft YaHei'; font-size:15px;}
-.pagetable .pagetableleft{width:100px;text-align:center;}
+.pagetable .pagetableleft{width:140px;text-align:center;}

@@ -180,8 +180,8 @@ $(".countrySelect").change(function(){
 	      });//ajax结束
      }//else if 结束
 	}); //change事件结束
- var PAGESIZE = 10;
- 
+  
+PAGESIZE = 10;
 $("#formSearch").submit(function() {
 	 var caseSearchShow = document.getElementById("caseSearchShow");
 	 formdata = $(this).serialize();
@@ -197,7 +197,7 @@ $("#formSearch").submit(function() {
          data:reqParams,
          dataType: "json",
          success: function(data) 
-         {$(this).resetForm();
+         {
           var str = "";
           var dataList = data.dataList;
           pageNo = data.pageNo;
@@ -206,7 +206,8 @@ $("#formSearch").submit(function() {
       	   var id = dataList[i].id;
       	   var title = dataList[i].title;
       	   str += "<tr><td><a target='_blank' href='<%=request.getContextPath()%>/pageServlet?news_id="+id+"'>"+title+"</a></td></tr>";
-           } // 提交后重置表单
+      	 $(this).resetForm(); 
+          } // 提交后重置表单
           caseSearchShow.innerHTML=str;
           var options = {  
         		  currentPage: pageNo,  //当前页数
@@ -263,7 +264,7 @@ function buildTable(pageNumber,pageSize,formdata) {
 	          $("#caseSearchShow").html('<tr><td><center>查询无数据</center></td></tr>');
 	      	}
    	        var newoptions = {  
-              currentPage: data.pageNo==1?1:data.pageNo,  //当前页数	
+              currentPage: data.pageNo,  //当前页数	
               totalPages: data.pages==0?1:data.pages,  //总页数
               size:"normal",  
               alignment:"center",  

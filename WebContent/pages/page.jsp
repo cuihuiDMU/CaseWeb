@@ -55,7 +55,7 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
   <div style="margin-top:5px;"></div> -->
    <div class="listmenu" style="width:208px; text-align:center;">
      <div class="listtt" id="newsALL" ><span>新闻要点 </span></div>
-     <div class="lists">
+     <div class="lists" id="newsALLlists" >
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr><td class="list">事故简介</td></tr>
           <tr><td class="list">事故损失</td></tr>
@@ -63,8 +63,18 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
           <tr><td class="list">二次事故</td></tr>
           </table>
      </div>
+     <div class="listtt" id="statisticfigure" ><span>统计结果 </span></div>
+     <div class="lists" id="statisticfigurelists" style="display:none;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr><td class="list" id="factorsTable">致因因素统计表</td></tr>
+          <tr><td class="list" id="factorsClass">致因因素分类体系</td></tr>
+          <tr><td class="list" id="faulttreeModel">故障树模型</td></tr>
+          <tr><td class="list" id="bayesianModel">贝叶斯模型</td></tr>
+          <tr><td class="list" id="probabilityTable">基本事件概率</td></tr>
+          </table>
+     </div>
      <div class="listtt" id="analysislist" ><span>案例分析 </span></div>
-     <div class="lists">
+     <div class="lists" id="analysislists" style="display:none;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr><td class="list">二次事故</td></tr>
           <tr><td class="list">ISM分析</td></tr>
@@ -104,35 +114,76 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
 </body>
 <script language="javascript" src="js/script.js" ></script>
 <script language="javascript">
-$("#analysislist").click(function(){
-   var pagetable="";
-   pagetable = "<tr><td class='pagetableleft' >ISM结构</td><td><%=ISM %></td></tr>";
-   pagetable+="<tr><td class='pagetableleft' >ISM模型</td><td><img src='<%=ISM_figure %>'></td></tr>";
-    document.getElementById("pagetable").innerHTML=pagetable;
- });
-$("#faulttreeAnalysis").click(function(){
-	   var pagetable="";
-	   pagetable+="<tr><td class='pagetableleft' >故障树分析</td><td><%=faulttree %></td></tr>";
-	   pagetable+="<tr><td class='pagetableleft' >故障树模型</td><td><img src='<%=faulttree_figure %>'></td></tr>"; 
-	    document.getElementById("pagetable").innerHTML=pagetable;
-	 });
-
-$("#bayesianAnalysis").click(function(){
-	   var pagetable="";
-	   pagetable+="<tr><td class='pagetableleft' >贝叶斯分析</td><td><%=faulttree %></td></tr>";
-	   pagetable+="<tr><td class='pagetableleft' >故障树模型</td><td><img src='<%=faulttree_figure %>'></td></tr>"; 
-	    document.getElementById("pagetable").innerHTML=pagetable;
-	 });
 $("#newsALL").click(function(){
-	   var newsALL;
+	if($('#newsALLlists').is(':hidden'))
+	{$('#newsALLlists').slideDown('slow');}
+	else{$('#newsALLlists').slideUp('slow');}
+	var newsALL;
 	   newsALL="<tr><td class='pagetableleft'>时间</td><td width='35%' style='text-align:center;'><%=date%></td>";
 	   newsALL+="<td class='pagetableleft'>地点</td><td width='35%' style='text-align:center;'><%=site %></td></tr>";
 	   newsALL+="<tr><td class='pagetableleft' >事故简介</td><td class='' colspan ='3'><%=brief %></td></tr>";
 	   newsALL+="<tr><td class='pagetableleft' >事故损失</td><td colspan ='3'><%=losses %></td></tr>";
 	   newsALL+="<tr><td class='pagetableleft' >事故信息</td><td colspan ='3'><%=info %></td></tr>";
 	   newsALL+="<tr><td class='pagetableleft' >二次事故</td><td colspan ='3'><%=secondary %></td></tr>";
-	   
-	    document.getElementById("pagetable").innerHTML=newsALL;
+       document.getElementById("pagetable").innerHTML=newsALL;
 	 });
+$("#statisticfigure").click(function(){
+	if($('#statisticfigurelists').is(':hidden'))
+	{$('#statisticfigurelists').slideDown('slow');}
+	else{$('#statisticfigurelists').slideUp('slow');}
+	   var pagetable="";
+	   pagetable+="<tr><td class='pagetableleft'>致因因素统计表</td><td><img src='images/factorsTable.JPG'></td></tr>";
+	    $(".artitle").html("统计结果");
+	    $(".pagetable").html(pagetable);
+	 });
+$("#analysislist").click(function(){
+	if($('#analysislists').is(':hidden'))
+	{$('#analysislists').slideDown('slow');}
+	else{$('#analysislists').slideUp('slow');}
+   var pagetable="";
+   pagetable = "<tr><td class='pagetableleft' >ISM结构</td><td><%=ISM %></td></tr>";
+   pagetable+="<tr><td class='pagetableleft' >ISM模型</td><td><img src='<%=ISM_figure %>'></td></tr>";
+    document.getElementById("pagetable").innerHTML=pagetable;
+ });
+$("#factorsClass").click(function(){
+	   var pagetable="";
+	   pagetable+="<tr><td class='pagetableleft' >致因因素分类体系</td><td><img src='images/factorsClass.JPG'></td></tr>"; 
+	    $(".artitle").html("分类体系");
+	    $(".pagetable").html(pagetable);
+	 });
+$("#faulttreeModel").click(function(){
+	   var pagetable="";
+	   pagetable+="<tr><td class='pagetableleft' >故障树模型</td><td><img src='images/faulttree.JPG'></td></tr>"; 
+	   pagetable+="<tr><td class='pagetableleft' >最小割集表</td><td><img src='images/mincuts.JPG'></td></tr>";
+	    $(".artitle").html("故障树模型");
+	    $(".pagetable").html(pagetable);
+	 });
+$("#bayesianModel").click(function(){
+	   var pagetable="";
+	   pagetable+="<tr><td class='pagetableleft' >贝叶斯模型</td><td><img src='images/bayesian.JPG'></td></tr>"; 
+	    $(".artitle").html("贝叶斯模型");
+	    $(".pagetable").html(pagetable);
+	 });
+$("#probabilityTable").click(function(){
+	   var pagetable="";
+	   pagetable+="<tr><td class='pagetableleft' >基本事件概率值</td><td><img src='images/probability.JPG'></td></tr>"; 
+	    $(".artitle").html("概率值表");
+	    $(".pagetable").html(pagetable);
+	 });
+$("#faulttreeAnalysis").click(function(){
+	   var pagetable="";
+	   pagetable+="<tr><td class='pagetableleft' >故障树分析</td><td><%=faulttree %></td></tr>";
+	   pagetable+="<tr><td class='pagetableleft' >故障树模型</td><td><img src='<%=faulttree_figure %>'></td></tr>"; 
+	   $(".artitle").html("故障树分析");
+	   $(".pagetable").html(pagetable);
+	 });
+$("#bayesianAnalysis").click(function(){
+	   var pagetable="";
+	   pagetable+="<tr><td class='pagetableleft' >故障树模型</td><td><img src='images/bayesian_case.JPG'></td></tr>"; 
+	   pagetable+="<tr><td class='pagetableleft' >敏感度值</td><td><img src='images/sensitivity_table.JPG'></td></tr>";
+	   $(".artitle").html("贝叶斯分析");
+	   $(".pagetable").html(pagetable);
+	 });
+
 </script>
 </html>
