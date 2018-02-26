@@ -23,5 +23,6 @@
 	<classpathentry kind="lib" path="E:/programs/eclipse/workspace/CaseWeb/WebContent/WEB-INF/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="E:/programs/eclipse/workspace/CaseWeb/WebContent/WEB-INF/lib/asm-1.5.3.jar"/>
 	<classpathentry kind="lib" path="E:/programs/eclipse/workspace/CaseWeb/WebContent/WEB-INF/lib/cglib-2.1_3.jar"/>
+	<classpathentry kind="lib" path="WebContent/js/bootstrap.bundle.min.js"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
