@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.UserMapper">
+    <select id="getPass" parameterType="java.lang.String" resultType="com.pojo.User">
+        select * from user_info where user_name = #{name}
+    </select>
+    <select id="adminLogin" parameterType="java.lang.String" resultType="com.pojo.Administrator">
+        select * from admin_info where admin_name = #{name}
+    </select>
+    <select id="getPhone" parameterType="java.lang.String" resultType="com.pojo.User">
+        select * from user_info where user_phone = #{phone}
+    </select>
+    <!-- useGeneratedKeys="true"；使用自增主键获取主键值策略;
+    keyProperty；指定对应的主键属性，也就是mybatis获取到主键值以后，将这个值封装给javaBean的哪个属性。 -->
+    <insert id="userAdd" parameterType="com.pojo.User" useGeneratedKeys="true" keyProperty="user_id">
+        insert into user_info( user_name,user_phone,user_password) values (#{user_name},#{phone},#{user_password})
+    </insert>
+
+</mapper>

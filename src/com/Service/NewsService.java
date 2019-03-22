@@ -3,7 +3,9 @@ package com.Service;
 import java.util.List;
 
 import com.pojo.News;
+import org.springframework.stereotype.Service;
 
+@Service("logisterService")
 public interface NewsService {
 	List<News> newslist(String newscountry);
 	List<News> caselist(String newscountry);

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapper.CrawlerMapper">
+    <insert id="saveCrawlerCase" parameterType="com.pojo.CrawlerCase" useGeneratedKeys="true" keyProperty="case_id">
+        insert into case_info( case_name,case_time,case_detail) values (#{case_name},#{case_time},#{case_detail})
+    </insert>
+
+</mapper>

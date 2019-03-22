@@ -3,6 +3,8 @@
 <%
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 String path = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()+ "/";
+
+    String sess = (String)request.getSession().getAttribute("loginUser");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,8 +25,7 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
  <div class="inner">
   <div class="logo"></div> 
   <div class="search">
-      <span><a href="#" class="white">登录后台</a></span>|<a href="#" class="white">联系我们</a>
-  </div> 
+  </div>
 </div>
 </div>
 <!--//header:End-->
@@ -91,6 +92,17 @@ String path = request.getScheme() + "://" + request.getServerName() + ":" + requ
 <script language="javascript" src="js/script.js" ></script>
 <script>
 $(document).ready(function(){
+    //var userLogin = "<%=sess %>";
+    if("<%=sess %>" == "null"){
+        $(".search").html("<span><a href='pages/login.jsp' class='white'>登录</a></span>|<a href='pages/userLogister.jsp' class='white'>注册</a>|<a href='pages/administrator.jsp' class='white'>管理员登录</a>");
+    }else {
+        $(".search").html("<span>欢迎你，<%=sess %></span>|<a href='OutServlet' class='white'>退出登录</a>");
+    }
+    //首页动态加载统计结果和分析结果
+
+
+
+
 $.get("<%=request.getContextPath()%>/loadServlet",function back(json){
 	var jsonleft = json[0];
 	var jsonright = json[1];
@@ -144,7 +156,7 @@ $(".newslist").mouseover(function(){
          url: "<%=request.getContextPath()%>/caseServlet?casecountry="+casecountry,
          success: function(json){
                var str = "";
-               for(var i=0; i < json.length; i++) {  
+               for(var i=0; i < json.length; i++) {
             	   var id = json[i].id;
             	   var title = json[i].title;
                	   var date = json[i].date;
